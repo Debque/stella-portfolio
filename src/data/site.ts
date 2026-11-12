@@ -6,7 +6,7 @@ export const site = {
   location: "Lagos, Nigeria",
   email: "adenikikeoye@gmail.com",
   github: "https://github.com/Debque",
-  linkedin: "www.linkedin.com/in/stella-webdev", //
+    linkedin: "https://www.linkedin.com/in/stella-webdev",
 };
 
 export type NavLink = {

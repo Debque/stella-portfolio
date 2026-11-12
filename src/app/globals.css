@@ -15,6 +15,7 @@
   --border: #1c1b2e; /* chunky outlines on buttons, cards, tags */
   --rule: #e6dccb; /* soft dividers between sections */
   --shadow-color: #1c1b2e;
+   --dot: #e6dcc8;
 
   /* Pastel highlights: the same in both modes */
   --butter: #ffd84d;
@@ -38,6 +39,7 @@
   --border: #fdf7ec;
   --rule: #33304a;
   --shadow-color: #c6b0ff;
+   --dot: #2a2839;
 }
 
 /* ---------- Register tokens with Tailwind ---------- */
@@ -70,11 +72,13 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
+  /* A dot grid: one tiny circle, repeated every 24px in both directions */
+  background-image: radial-gradient(var(--dot) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
   transition:
     background-color 300ms ease,
     color 300ms ease;
 }
-
 ::selection {
   background-color: var(--butter);
   color: var(--ink);

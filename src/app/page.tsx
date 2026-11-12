@@ -1,12 +1,14 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { FloatingDoodles } from "@/components/ui/FloatingDoodles";
 
 export default function HomePage() {
   return (
     <>
       {/* Temporary hero: we build the real one in Phase 5 */}
       <section id="top" className="py-24 sm:py-32">
+        <FloatingDoodles />
         <Container>
           <Reveal>
             <h1 className="font-display text-5xl font-extrabold leading-tight tracking-tight sm:text-7xl">
@@ -19,23 +21,23 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <Section id="work" number="01" label="Selected work" title="Shipped projects">
+      <Section id="work" accent="butter" number="01" label="Selected work" title="Shipped projects">
         <p className="h-64 text-muted">Project cards go here (Phase 6).</p>
       </Section>
+ <Section id="stack" accent="lilac" number="02" label="Stack" title="What I use daily">
 
-      <Section id="stack" number="02" label="Stack" title="What I use daily">
         <p className="h-64 text-muted">Capabilities go here (Phase 7).</p>
       </Section>
 
-      <Section id="receipts" number="03" label="Receipts" title="Proof over promises">
+       <Section id="receipts" accent="mint" number="03" label="Receipts" title="Proof over promises">
         <p className="h-64 text-muted">Outcomes go here (Phase 7).</p>
       </Section>
 
-      <Section id="faq" number="04" label="FAQ" title="Questions you probably have">
+       <Section id="faq" accent="peach" number="04" label="FAQ" title="Questions you probably have">
         <p className="h-64 text-muted">The accordion goes here (Phase 7).</p>
       </Section>
 
-      <Section id="contact" number="05" label="Contact" title="Let's build something">
+      <Section id="contact" accent="pink" number="05" label="Contact" title="Let's build something">
         <p className="h-64 text-muted">The contact form goes here (Phase 8).</p>
       </Section>
     </>
