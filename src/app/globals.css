@@ -80,6 +80,13 @@ body {
   color: var(--ink);
 }
 
+/* Smooth scrolling for nav links, but only if the visitor hasn't asked for less motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body {
     transition: none;
