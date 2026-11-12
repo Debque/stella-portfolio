@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import type { Doodle } from "@/data/doodles";
 
 // A four-pointed sparkle, drawn as an SVG path.
 function Sparkle({ className }: { className: string }) {
@@ -15,32 +16,23 @@ function Sparkle({ className }: { className: string }) {
   );
 }
 
-type Doodle = {
-  id: string;
-  position: string; // where it sits (Tailwind classes)
-  shape: "sparkle" | "circle" | "square";
-  colorClass: string;
-  size: string;
-  duration: number; // seconds for one up-and-down float
-  delay: number; // so they don't all move in sync
+type FloatingDoodlesProps = {
+  items: Doodle[];
+  // Which screen sizes show the doodles. Hidden on phones by default.
+  className?: string;
 };
 
-const doodles: Doodle[] = [
-  { id: "a", position: "right-[8%] top-[12%]", shape: "sparkle", colorClass: "fill-butter", size: "h-12 w-12", duration: 5, delay: 0 },
-  { id: "b", position: "right-[22%] top-[58%]", shape: "circle", colorClass: "bg-pink", size: "h-6 w-6", duration: 4, delay: 0.8 },
-  { id: "c", position: "right-[4%] top-[70%]", shape: "square", colorClass: "bg-lilac", size: "h-8 w-8", duration: 6, delay: 0.4 },
-  { id: "d", position: "left-[46%] top-[6%]", shape: "sparkle", colorClass: "fill-mint", size: "h-7 w-7", duration: 4.5, delay: 1.2 },
-];
-
-export function FloatingDoodles() {
+export function FloatingDoodles({ items, className = "hidden md:block" }: FloatingDoodlesProps) {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden md:block">
-      {doodles.map((doodle) => {
+    <div aria-hidden="true" className={`pointer-events-none absolute inset-0 ${className}`}>
+      {items.map((doodle) => {
         let shapeElement = null;
         if (doodle.shape === "sparkle") {
           shapeElement = <Sparkle className={`${doodle.size} ${doodle.colorClass} stroke-border`} />;
         } else if (doodle.shape === "circle") {
           shapeElement = <div className={`${doodle.size} ${doodle.colorClass} rounded-full border-2 border-border`} />;
+        } else if (doodle.shape === "ring") {
+          shapeElement = <div className={`${doodle.size} rounded-full border-[3px] border-dashed border-border`} />;
         } else {
           shapeElement = <div className={`${doodle.size} ${doodle.colorClass} rotate-12 rounded-md border-2 border-border`} />;
         }

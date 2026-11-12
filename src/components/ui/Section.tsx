@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { FloatingDoodles } from "@/components/ui/FloatingDoodles";
+import { sectionDoodles } from "@/data/doodles";
 
 export type SectionAccent = "butter" | "pink" | "lilac" | "mint" | "peach" | "sky";
 
@@ -26,6 +28,10 @@ type SectionProps = {
 
 export function Section({ id, number, label, title, accent, children }: SectionProps) {
   const titleId = `${id}-title`;
+   let doodles = sectionDoodles[id];
+  if (doodles === undefined) {
+    doodles = [];
+  }
 
   return (
     <section
@@ -40,6 +46,7 @@ export function Section({ id, number, label, title, accent, children }: SectionP
       >
         {number}
       </span>
+       <FloatingDoodles items={doodles} className="hidden xl:block" />
 
       <Container className="relative">
         <Reveal>
