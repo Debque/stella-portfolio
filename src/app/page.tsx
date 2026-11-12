@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/ui/Reveal";
+import { RevealGroup, RevealItem } from "@/components/ui/RevealGroup";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const swatches = [
@@ -19,34 +21,45 @@ export default function HomePage() {
         <ThemeToggle />
       </div>
 
-      <h1 className="font-display text-5xl font-extrabold leading-tight tracking-tight sm:text-6xl">
-        I build{" "}
-        <span className="rounded-lg border-2 border-border bg-butter px-2 text-ink">resilient</span>{" "}
-        interfaces that survive{" "}
-        <span className="rounded-lg border-2 border-border bg-pink px-2 text-ink">low bandwidth</span>.
-      </h1>
+      <Reveal>
+        <h1 className="font-display text-5xl font-extrabold leading-tight tracking-tight sm:text-6xl">
+          I build{" "}
+          <span className="rounded-lg border-2 border-border bg-butter px-2 text-ink">resilient</span>{" "}
+          interfaces that survive{" "}
+          <span className="rounded-lg border-2 border-border bg-pink px-2 text-ink">low bandwidth</span>.
+        </h1>
+      </Reveal>
 
-      <p className="max-w-prose text-lg text-muted">
-        This paragraph uses the muted colour and Geist Sans. The headline should feel chunky and
-        playful, with pastel highlight blocks behind the key words.
-      </p>
+      <Reveal delay={0.15}>
+        <p className="max-w-prose text-lg text-muted">
+          This paragraph arrives a moment after the headline, because it has a small delay.
+        </p>
+      </Reveal>
 
-      <div className="rounded-2xl border-2 border-border bg-surface p-6 shadow-chunky">
-        <p className="font-mono text-sm">A card with a chunky border and offset shadow.</p>
+      {/* Empty space so you have to scroll to see the next parts */}
+      <div className="flex h-[70vh] items-end">
+        <p className="font-mono text-xs text-muted">↓ SCROLL DOWN</p>
       </div>
 
-      <div className="h-px bg-rule" />
+      <Reveal>
+        <div className="rounded-2xl border-2 border-border bg-surface p-6 shadow-chunky">
+          <p className="font-mono text-sm">This card only animates when you scroll it into view.</p>
+        </div>
+      </Reveal>
 
-      <div className="flex flex-wrap gap-3">
+      <RevealGroup className="flex flex-wrap gap-3">
         {swatches.map((swatch) => (
-          <span
-            key={swatch.name}
-            className={`${swatch.className} rounded-lg border-2 border-border px-3 py-1 font-mono text-xs font-bold text-ink`}
-          >
-            {swatch.name}
-          </span>
+          <RevealItem key={swatch.name}>
+            <span
+              className={`${swatch.className} inline-block rounded-lg border-2 border-border px-3 py-1 font-mono text-xs font-bold text-ink`}
+            >
+              {swatch.name}
+            </span>
+          </RevealItem>
         ))}
-      </div>
+      </RevealGroup>
+
+      <div className="h-[30vh]" />
     </main>
   );
 }
