@@ -1,2 +1,87 @@
 @import "tailwindcss";
 
+/* Make `dark:` follow the .dark class that next-themes puts on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Light mode (default) ---------- */
+:root {
+  /* Base */
+  --background: #fdf7ec;
+  --surface: #ffffff;
+  --foreground: #1c1b2e;
+  --muted: #55536e;
+
+  /* Lines and shadows */
+  --border: #1c1b2e; /* chunky outlines on buttons, cards, tags */
+  --rule: #e6dccb; /* soft dividers between sections */
+  --shadow-color: #1c1b2e;
+
+  /* Pastel highlights: the same in both modes */
+  --butter: #ffd84d;
+  --pink: #ff9fc6;
+  --lilac: #c6b0ff;
+  --mint: #a9e5b0;
+  --peach: #ffbb8c;
+  --sky: #a5d0ff;
+
+  /* Text that sits ON a pastel: always dark */
+  --ink: #1c1b2e;
+}
+
+/* ---------- Dark mode: only the values that change ---------- */
+.dark {
+  --background: #15141f;
+  --surface: #201e2e;
+  --foreground: #fdf7ec;
+  --muted: #b3b0c8;
+
+  --border: #fdf7ec;
+  --rule: #33304a;
+  --shadow-color: #c6b0ff;
+}
+
+/* ---------- Register tokens with Tailwind ---------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-rule: var(--rule);
+
+  --color-butter: var(--butter);
+  --color-pink: var(--pink);
+  --color-lilac: var(--lilac);
+  --color-mint: var(--mint);
+  --color-peach: var(--peach);
+  --color-sky: var(--sky);
+  --color-ink: var(--ink);
+
+  /* The chunky offset shadow: gives us `shadow-chunky` and `shadow-chunky-sm` */
+  --shadow-chunky: 4px 4px 0 0 var(--shadow-color);
+  --shadow-chunky-sm: 2px 2px 0 0 var(--shadow-color);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-bricolage);
+}
+
+/* ---------- Base page styles ---------- */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+}
+
+::selection {
+  background-color: var(--butter);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+}
