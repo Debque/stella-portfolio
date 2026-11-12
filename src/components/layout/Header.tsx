@@ -15,7 +15,7 @@ export function Header() {
       <Container className="flex h-16 items-center justify-between gap-4">
         <a
           href="#top"
-          className="rounded-lg border-2 border-border bg-butter px-3 py-1 font-display text-lg font-extrabold text-ink shadow-chunky-sm"
+          className="whitespace-nowrap rounded-lg border-2 border-border bg-butter px-3 py-1 font-display text-lg font-extrabold text-ink shadow-chunky-sm"
         >
           ★ {site.shortName.toUpperCase()} ★
         </a>
@@ -34,9 +34,9 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <ButtonLink href="#contact" className="hidden md:inline-flex">
-            Let&apos;s talk
-          </ButtonLink>
+                    <div className="hidden md:block">
+            <ButtonLink href="#contact">Let&apos;s talk</ButtonLink>
+          </div>
           <MobileMenu />
         </div>
       </Container>

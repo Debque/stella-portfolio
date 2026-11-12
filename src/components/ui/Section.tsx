@@ -1,34 +1,24 @@
 import type { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
 import { FloatingDoodles } from "@/components/ui/FloatingDoodles";
+import { Reveal } from "@/components/ui/Reveal";
 import { sectionDoodles } from "@/data/doodles";
-
-export type SectionAccent = "butter" | "pink" | "lilac" | "mint" | "peach" | "sky";
-
-// Tailwind only generates classes it can find written out in full in your code,
-// so we list each class completely instead of building it like `bg-${accent}`.
-const accentClasses: Record<SectionAccent, string> = {
-  butter: "bg-butter",
-  pink: "bg-pink",
-  lilac: "bg-lilac",
-  mint: "bg-mint",
-  peach: "bg-peach",
-  sky: "bg-sky",
-};
+import { accentBg, type Accent } from "@/lib/accents";
 
 type SectionProps = {
   id: string;
   number: string;
   label: string;
   title: ReactNode;
-  accent: SectionAccent;
+  accent: Accent;
   children: ReactNode;
 };
 
 export function Section({ id, number, label, title, accent, children }: SectionProps) {
   const titleId = `${id}-title`;
-   let doodles = sectionDoodles[id];
+
+  // Look up this section's doodles. Sections without an entry simply get none.
+  let doodles = sectionDoodles[id];
   if (doodles === undefined) {
     doodles = [];
   }
@@ -46,12 +36,14 @@ export function Section({ id, number, label, title, accent, children }: SectionP
       >
         {number}
       </span>
-       <FloatingDoodles items={doodles} className="hidden xl:block" />
+
+      {/* Only on extra-large screens, where the side margins are wide enough to stay clear of content */}
+      <FloatingDoodles items={doodles} className="hidden xl:block" />
 
       <Container className="relative">
         <Reveal>
           <p
-            className={`${accentClasses[accent]} inline-block -rotate-2 rounded-md border-2 border-border px-2.5 py-1 font-mono text-xs font-bold tracking-widest text-ink shadow-chunky-sm`}
+            className={`${accentBg[accent]} inline-block -rotate-2 rounded-md border-2 border-border px-2.5 py-1 font-mono text-xs font-bold tracking-widest text-ink shadow-chunky-sm`}
           >
             {`// ${number}. ${label.toUpperCase()}`}
           </p>
