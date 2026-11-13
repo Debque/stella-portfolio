@@ -1,3 +1,4 @@
+import { Contact } from "@/components/sections/Contact";
 import { Faq } from "@/components/sections/Faq";
 import { Hero } from "@/components/sections/Hero";
 import { Receipts } from "@/components/sections/Receipts";
@@ -36,8 +37,8 @@ export default function HomePage() {
         <Faq />
       </Section>
 
-      <Section id="contact" accent="pink" number="05" label="Contact" title="Let's build something">
-        <p className="h-64 text-muted">The contact form goes here (Phase 8).</p>
+            <Section id="contact" accent="pink" number="05" label="Contact" title="Let's build something">
+        <Contact />
       </Section>
     </>
   );
