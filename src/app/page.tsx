@@ -3,6 +3,8 @@ import { StackMarquee } from "@/components/sections/StackMarquee";
 import { Section } from "@/components/ui/Section";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { projects } from "@/data/projects";
+// Only show projects that are ready. Flip `published` to true in projects.ts to add one.
+const publishedProjects = projects.filter((project) => project.published);
 
 export default function HomePage() {
   return (
@@ -11,7 +13,7 @@ export default function HomePage() {
       <StackMarquee />
             <Section id="work" accent="butter" number="01" label="Selected work" title="Shipped projects, with the receipts">
         <div className="space-y-24">
-          {projects.map((project) => (
+                    {publishedProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>

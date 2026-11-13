@@ -23,6 +23,7 @@ export type Project = {
   repoUrl: string;
   image?: string; // path inside /public. Leave out to show a placeholder.
   caseStudy: CaseStudy;
+  published?: boolean; // If false, the project is hidden from the homepage
 };
 
 export const projects: Project[] = [
@@ -35,7 +36,7 @@ export const projects: Project[] = [
     accent: "butter",
     year: "2026",
     description:
-      "A searchable directory of 200+ hospitals. Visitors search by name, city or LGA, filter by specialty, explore a map, and export or share what they find. Admins curate entries through a protected dashboard.",
+      "A searchable directory of 150 hospitals across all 36 states and the FCT. Visitors search by name, city or LGA, filter by specialty, explore a map, and export or share what they find. Admins curate entries through a protected dashboard.",
     highlights: [
       "Map radius search using the visitor's location (Mapbox)",
       "CSV export with chosen columns, generated in the browser",
@@ -79,6 +80,7 @@ export const projects: Project[] = [
   URL.revokeObjectURL(url)
 }`,
     },
+    published: true
   },
   {
     id: "stokk",
@@ -123,6 +125,7 @@ export const projects: Project[] = [
   sold_at: new Date(saleDate).toISOString(),
 });`,
     },
+    published: true
   },
   {
     id: "chatter",
@@ -175,5 +178,6 @@ useEffect(() => {
   return () => clearInterval(timer)
 }, [save, interval])`,
     },
+    published: false,
   },
 ];
