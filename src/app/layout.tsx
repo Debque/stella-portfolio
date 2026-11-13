@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MotionProvider } from "@/components/MotionProvider";
+import { getSiteUrl } from "@/lib/site-url";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
@@ -21,10 +22,30 @@ const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
 });
 
+const siteTitle = "Stella Adegoke — Frontend Engineer";
+const siteDescription =
+  "Frontend engineer in Lagos building fast, accessible web apps with Next.js, TypeScript and Supabase.";
+
 export const metadata: Metadata = {
-  title: "Stella Adegoke — Frontend Engineer",
-  description:
-    "Frontend engineer in Lagos building fast, accessible web apps with Next.js, TypeScript and Supabase.",
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: siteTitle,
+    template: "%s · Stella Adegoke",
+  },
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Stella Adegoke",
+    title: siteTitle,
+    description: siteDescription,
+    locale: "en_NG",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
