@@ -19,9 +19,9 @@ export function Footer() {
               LinkedIn ↗
             </a>
           </li>
-          <li>
-            <a href={`mailto:${site.email}`} className="hover:text-foreground">
-              Email
+                   <li>
+            <a href="#contact" className="hover:text-foreground">
+              Contact
             </a>
           </li>
         </ul>
