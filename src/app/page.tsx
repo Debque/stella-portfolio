@@ -1,14 +1,20 @@
 import { Hero } from "@/components/sections/Hero";
 import { StackMarquee } from "@/components/sections/StackMarquee";
 import { Section } from "@/components/ui/Section";
+import { ProjectCard } from "@/components/projects/ProjectCard";
+import { projects } from "@/data/projects";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <StackMarquee />
-      <Section id="work" accent="butter" number="01" label="Selected work" title="Shipped projects">
-        <p className="h-64 text-muted">Project cards go here (Phase 6).</p>
+            <Section id="work" accent="butter" number="01" label="Selected work" title="Shipped projects, with the receipts">
+        <div className="space-y-24">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
       </Section>
  <Section id="stack" accent="lilac" number="02" label="Stack" title="What I use daily">
 
